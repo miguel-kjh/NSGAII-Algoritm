@@ -5,6 +5,7 @@ declare -a population;
 
 mutation=('0.02' '0.1' '0.3' '0.4');
 population=('100' '500' '1000');
+evaluations=25000
 file="fon.in";
 file_aux="aux.in";
 exec="nsga2r";
@@ -16,8 +17,10 @@ function modify_parameter_files() {
     rm -fr $file_aux;
 }
 
-for ((idx=0; idx<${#mutation[@]}; ++idx)); do
-    for ((jdx=0; jdx<${#population[@]}; ++jdx)); do
+for ((jdx=0; jdx<${#population[@]}; ++jdx)); do
+    gen=$((evaluations / population[jdx]));
+    for ((idx=0; idx<${#mutation[@]}; ++idx)); do
+        
         folder="exp_pb_${population[jdx]}_mut_${mutation[idx]}";
 
         modify_parameter_files "1c${population[jdx]}"
@@ -30,6 +33,7 @@ for ((idx=0; idx<${#mutation[@]}; ++idx)); do
         mkdir $folder;
 
         mv *.out -t $folder;
+        #echo "${mutation[idx]} - $gen";
     done
 done
 
