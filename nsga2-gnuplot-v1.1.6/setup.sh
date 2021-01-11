@@ -25,6 +25,8 @@ for ((jdx=0; jdx<${#population[@]}; ++jdx)); do
 
         modify_parameter_files "1c${population[jdx]}"
 
+        modify_parameter_files "2c${gen}"
+
         modify_parameter_files "12c${mutation[idx]}"
 
         ./$exec $random_seed < $file;
