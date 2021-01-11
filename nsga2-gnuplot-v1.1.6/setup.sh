@@ -35,7 +35,6 @@ for ((jdx=0; jdx<${#population[@]}; ++jdx)); do
         mkdir $folder;
 
         mv *.out -t $folder;
-        #echo "${mutation[idx]} - $gen";
     done
 done
 
